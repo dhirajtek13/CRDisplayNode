@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Demo</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- <button id="getData">Get Data from API</button>
+        <div id="result"></div> -->
+        
+        <div>
+            <h1>
+                v4. Checkout : <span class="checkout_bags"></span>
+    </h1>
+    <input type="text" placeholder="scan token">
+    <input class="type_token" type="text" placeholder="type token">
+    <button  onclick="add_new()">Ok</button>
+    <button  onclick="fetch_existing_data()">Refresh</button>
+</div>
+<div class="container"></div>
+
+<script>
+    // $(document).ready(function() {
+        //   $('#getData').click(function() {
+            //     $.get('http://localhost:3000/api/data', function(data) {
+                //       $('#result').html(data.message);
+                //     });
+    //   });
+    // });
+    </script>
+<script src="cl_script.js"></script>
+</body>
+</html>

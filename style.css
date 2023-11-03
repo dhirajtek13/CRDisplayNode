@@ -1,0 +1,19 @@
+.box {
+    height: 100px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    margin-bottom: 5px;
+    float: left;
+    font-size: 100px;
+  }
+.box:hover { cursor: pointer}    
+  
+    .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top:10px;
+  }
+  
