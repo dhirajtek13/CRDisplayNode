@@ -1,8 +1,8 @@
   /*  Dummy urls Config: */
   var DB_FETCH_URL =
-    "http://localhost:3000/api/fetch_response"; //TODO: Need to change. response coming like below:
-  var DB_ADD_URL = "http://localhost:3000/api/add_response"; //TODO: Need to change 
-  var DB_CHECKOUT_URL = "http://localhost:3000/api/checkout_response"; //TODO: Need to change 
+    "https://crdisplaynode.onrender.com/api/fetch_response"; //TODO: Need to change. response coming like below:
+  var DB_ADD_URL = "https://crdisplaynode.onrender.com/api/add_response"; //TODO: Need to change 
+  var DB_CHECKOUT_URL = "https://crdisplaynode.onrender.com/api/checkout_response"; //TODO: Need to change 
 
   //actual code start 
 
@@ -66,7 +66,8 @@
     newTokn = newTokn.replace(/[^0-9\.]/g, ''); //set a Regex that only allows number 0-9 to be typed in the textbox
     if (newTokn && numbersArray.includes(newTokn) !== true) {
       var postData = {};
-      var formatted_token = tokenPrefix + newTokn;
+      //var formatted_token = tokenPrefix + newTokn;
+      var formatted_token =  newTokn;
     //   postData['"' + formatted_token + '"'] = {
     //     token: formatted_token,
     //     time: Date.now(),
@@ -91,6 +92,9 @@
         error: function(jqXHR, textStatus, errorThrown) {
           // Handle any errors
           console.error('Error:', textStatus, errorThrown);
+          alert(
+            "error. please check console for details. might be sample api failure"
+          );
         }
       });
 
@@ -129,6 +133,9 @@
         // Handle any errors
         //console.log('errr', textStatus, errorThrown, jqXHR);
         console.error('Error:', textStatus, errorThrown);
+        alert(
+            "error. please check console for details. might be sample api failure"
+          );
       }
     });
 
@@ -301,21 +308,17 @@
         var item = requested_token[key];
         tokenArray.push(item.token); // ["C1-PRY-01", "C1-PRY-33", "C1-PRY-04"]
         checkout_requests_time.push(item.time); // [1694596190966, 1694596190966, 1694596190966]
-
-        parts = item.token.split(/(\d+)$/);
-        if (parts.length === 3) {
-          /* if(tokenPrefix == '') { //set once only
-           tokenPrefix = parts[0]; // "C1-PRY-""
-          } */
-          var number = parts[1];
-          numbersArray.push(number); // ["01", "33", "04"]
-        }
+        //parts = item.token.split("-");
+        
+        parts = item.token.trim().split(/(\d+)$/);
+        var number = parseFloat(parts[1]);
+        numbersArray.push(number); // ["01", "33", "04"]
       }
     }
     if (parts) {
-      if (tokenPrefix == '') { //set once only
+      //if (tokenPrefix == '') { //set once only
         tokenPrefix = parts[0]; // "C1-PRY-""
-      }
+     // }
     }
 
     //after fetching 'checkout_requested' then update display box list on UI
